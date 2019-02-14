@@ -33,7 +33,7 @@ function makeRe(pattern, options) {
   return re;
 }
 
-module.exports = (inputs, patterns, options) => {
+export default (inputs, patterns, options) => {
   if (!(Array.isArray(inputs) && Array.isArray(patterns))) {
     throw new TypeError(
       `Expected two arrays, got ${typeof inputs} ${typeof patterns}`
@@ -68,8 +68,8 @@ module.exports = (inputs, patterns, options) => {
   return ret;
 };
 
-module.exports.isMatch = (input, pattern, options) => {
+export function isMatch(input, pattern, options) {
   const re = makeRe(pattern, options);
   const matches = re.test(input);
   return re.negated ? !matches : matches;
-};
+}
